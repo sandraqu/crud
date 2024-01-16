@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# Dispatch Frontend Interview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hi!
 
-## Available Scripts
+We're delighted you're interested in the Dispatch team! Our interview challenge involves solving a practical, real-world problem, giving us insight into your problem-solving and communication skills.
 
-In the project directory, you can run:
+**Time**: We don't expect this problem to be completed in an hour. We're primarily interested in seeing how you approach the problem, and how you communicate your thought process. We're happy to answer any questions you have along the way!
 
-### `npm start`
+**Tech Stack**: We've prepared a basic setup using our MUI + react-query stack. Feel free to start here or use a different stack if you prefer.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get started, clone this repository and install dependencies:
 
-### `npm test`
+```sh
+npm ci
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## MVP
 
-### `npm run build`
+Create a CRUD application for managing user details. It should include:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- User list display
+- Form to add a new user
+- Options to edit and delete users
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The user should have the following fields:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- First Name
+- Last Name
+- Date of Birth
+- Email
+- Phone Number
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Design a multi-page form to collect this information, with name and DOB on the first page and contact details on the second. Basic layout and usability are important, but advanced styling is not required. MUI or similar UI frameworks should suffice.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## APIs
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To support your application, we've set up a mock API server using [MSW](https://mswjs.io/). It simulates backend functionality without the need for a full backend setup. The API includes these endpoints:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - `GET /api/v1/users` - Get a list of users
+  - `POST /api/v1/users` - Create a new user
+  - `PUT /api/v1/users/:id` - Update an existing user
+  - `DELETE /api/v1/users/:id` - Delete an existing user
