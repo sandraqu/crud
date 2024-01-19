@@ -6,7 +6,7 @@ We're delighted you're interested in the Dispatch team! Our interview challenge 
 
 **Format**: This is a take-home challenge. You can work on it at your own pace, and submit your solution when you're ready. We'll review your submission and schedule a follow-up interview to discuss your solution.
 
-**Time**: We expect this challenge to take 2-4 hours. While you do not have to limit yourself to this time, we aren't looking for 100% polish and hope to discuss time tradeoffs in our follow-up interview as prioritization and balancing "right" vs. "right, for now" is critical at this stage of our company.
+**Time**: We expect this challenge to take 2-4 hours. While you do not have to limit yourself to this time, we aren't looking for 100% polish -- in the follow-up interview, we will discuss how your approached the problem given the time that you put in and what tradeoffs you made. At this stage of our company, prioritizing and balancing "right" vs. "right, for now" is critical.
 
 **Tech Stack**: We've prepared a basic setup using our MUI + react-query stack. Feel free to start here or use a different stack if you prefer. Our day to day stack is
 
