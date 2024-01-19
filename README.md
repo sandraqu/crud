@@ -4,9 +4,25 @@ Hi!
 
 We're delighted you're interested in the Dispatch team! Our interview challenge involves solving a practical, real-world problem, giving us insight into your problem-solving and communication skills.
 
-**Time**: We don't expect this problem to be completed in an hour. We're primarily interested in seeing how you approach the problem, and how you communicate your thought process. We're happy to answer any questions you have along the way!
+**Format**: This is a take-home challenge. You can work on it at your own pace, and submit your solution when you're ready. We'll review your submission and schedule a follow-up interview to discuss your solution.
 
-**Tech Stack**: We've prepared a basic setup using our MUI + react-query stack. Feel free to start here or use a different stack if you prefer.
+**Time**: We expect this challenge to take 2-4 hours. While you do not have to limit yourself to this time, we aren't looking for 100% polish -- in the follow-up interview, we will discuss how your approached the problem given the time that you put in and what tradeoffs you made. At this stage of our company, prioritizing and balancing "right" vs. "right, for now" is critical.
+
+**Tech Stack**: We've prepared a basic setup using our MUI + react-query stack. Feel free to start here or use a different stack if you prefer. Our day to day stack is
+
+* Typescript
+* Vite
+* React
+* MUI
+* React Router (v6)
+* React Query (v5)
+* Zustand
+* Immer
+* React Hook Form
+* Fastify
+* Vitest
+* Playwright
+
 
 ## Getting Started
 
