@@ -23,6 +23,7 @@ We're delighted you're interested in the Dispatch team! Our interview challenge 
 * Vitest
 * Playwright
 
+**Submitting**: Please open a PR against main when you're done and we'll review!
 
 ## Getting Started
 
