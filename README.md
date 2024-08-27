@@ -8,7 +8,9 @@ We're delighted you're interested in the Dispatch team! Our interview challenge 
 
 +**Time**: You'll have 48 hours to complete the challenge starting the moment you gain access to this repo. We expect this challenge to take 2-4 hours of dedication. While you do not have to limit yourself to this time, we aren't looking for 100% polish -- in the follow-up interview, we will discuss how your approached the problem given the time that you put in and what tradeoffs you made. At this stage of our company, prioritizing and balancing "right" vs. "right, for now" is critical.
 
-**Tech Stack**: We've prepared a basic setup using our MUI + react-query stack. Feel free to start here or use a different stack if you prefer. Our day to day stack is
+**Tech Stack**: We've prepared a basic setup using our MUI + react-query stack. Feel free to start here or use a different stack if you prefer. If you use our basic setup, please **open a PR against main when you're done and we'll review!**
+
+Our day to day stack is:
 
 * Typescript
 * Vite
@@ -22,8 +24,6 @@ We're delighted you're interested in the Dispatch team! Our interview challenge 
 * Fastify
 * Vitest
 * Playwright
-
-**Submitting**: Please open a PR against main when you're done and we'll review!
 
 ## Getting Started
 
