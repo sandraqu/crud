@@ -1,14 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { getAppRoutes } from './routes';
+import "./App.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import { HomeView } from "./views/home";
 
 const queryClient = new QueryClient();
 
 function App() {
-  const router = createBrowserRouter(getAppRoutes());
+  const router = createBrowserRouter(
+    createRoutesFromElements(<Route path="/" element={<HomeView />} />)
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
