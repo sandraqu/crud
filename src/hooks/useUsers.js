@@ -1,20 +1,17 @@
-import axios from "axios";
+import { getter } from "../helpers/api";
 import { useQuery } from "@tanstack/react-query";
-const fetcher = (url) => {
-  return axios.get(url).then((res) => res.data);
-};
 
-const useUsers = () => {
-  const { data, isLoading, error } = useQuery({
+const useUsers = (url) => {
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["users"],
-    queryFn: () => fetcher("http://localhost:3000/api/v1/users"),
+    queryFn: () => getter(url),
     refetchOnWindowFocus: false,
   });
 
   // there is a warning I am not addressing
   // [MSW] Warning: captured a request without a matching request handler:
 
-  return { users: data, isLoading, isError: !!error };
+  return { users: data, isLoading, isError: !!error, refetch };
 };
 
 export default useUsers;
