@@ -8,42 +8,24 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { PersonDto } from "../api/customers";
-import { useQueryClient } from "@tanstack/react-query";
-// import useDeleteUser from "../hooks/useDeleteUser";
-import axios from "axios";
+import useDeleteUser from "../hooks/useDeleteUser";
+import { useUpdateUser } from "../hooks/useUpdateUser";
+import Alert from "./Alert";
 
-const UserItem = ({ user, refetch }: { user: PersonDto; refetch: any }) => {
-  const queryClient = useQueryClient();
-  //   const { mutate: deleteUserMutation } = useDeleteUser();
+const UserItem = ({ user }: { user: PersonDto }) => {
   const { firstName, lastName, dob, id } = user;
-  const [isEditingDob, setIsEditingDob] = useState(false);
-  const [isAreYouSure, setIsAreYouSure] = useState(false);
-  const [editedDob, setEditedDob] = useState(dob);
+  const [isEditingDob, setIsEditingDob] = useState<boolean>(false);
+  const [isAreYouSure, setIsAreYouSure] = useState<boolean>(false);
+  const [editedDob, setEditedDob] = useState<string | undefined>(dob);
+  const { mutate: deleteUserMutation, error: deleteError } = useDeleteUser(
+    user.id
+  );
+  const { mutate: updateUserMutation, error: updateError } =
+    useUpdateUser(user);
 
-  const handleSaveDob = async (user: any) => {
-    // PUT /api/v1/users/:id - Update an existing user
-
-    // try {
-    //   const response = await axios.put(
-    //     `http://localhost:3000/api/v1/users/${user.id}`
-    //   );
-    //   // I'm getting a 204 no content
-    //   if (response.status === 200) {
-    //     refetch();
-    //   }
-    //   console.log("User updated successfully:", response.data);
-    // } catch (error) {
-    //   console.error("Error updating user:", error);
-    // }
-
-    // This part seems to work but it's 24hrs off
-    const updatedUser = { ...user, dob: editedDob };
-    queryClient.setQueryData(["users"], (oldUsers: PersonDto[]) => {
-      const newUsers = oldUsers.map((u) =>
-        u.id === user.id ? updatedUser : u
-      );
-      return newUsers;
-    });
+  const handleUpdateUser = (user: PersonDto) => {
+    user.dob = editedDob;
+    updateUserMutation(user);
     setIsEditingDob(false);
   };
 
@@ -52,13 +34,15 @@ const UserItem = ({ user, refetch }: { user: PersonDto; refetch: any }) => {
   };
 
   const handleDelete = (userId: number) => {
-    // I have a type error, number is not assignable to void
-    // deleteUser(userId);
+    setIsEditingDob(false);
     setIsAreYouSure(false);
+    deleteUserMutation(userId);
   };
 
   return (
     <>
+      {updateError && <Alert>Could not save</Alert>}
+      {deleteError && <Alert>Could not delete</Alert>}
       <ListItem>
         <ListItemAvatar>
           <Avatar alt={firstName + " " + lastName} src="#" />
@@ -73,12 +57,24 @@ const UserItem = ({ user, refetch }: { user: PersonDto; refetch: any }) => {
                   type="date"
                   value={editedDob}
                   onChange={(e) => setEditedDob(e.target.value)}
+                  style={{
+                    padding: "4px 6px",
+                    background: "green",
+                    borderRadius: "4px",
+                    border: "1px solid #666666",
+                    height: "20px",
+                  }}
                 />
               ) : (
                 <Typography
-                  component="span"
+                  component="p"
                   variant="body2"
-                  sx={{ color: "text.primary", display: "inline" }}
+                  sx={{
+                    color: "text.primary",
+                    display: "inline-block",
+                    lineHeight: "20px",
+                    height: "30px",
+                  }}
                 >
                   {dob
                     ? new Date(dob)
@@ -94,10 +90,18 @@ const UserItem = ({ user, refetch }: { user: PersonDto; refetch: any }) => {
             </>
           }
         />
-        <ListItemButton>
+        <ListItemButton
+          sx={{
+            flex: 2,
+            justifyContent: "center",
+            "&:hover": {
+              backgroundColor: "transparent", // Remove hover background color
+            },
+          }}
+        >
           {isEditingDob ? (
             <Button
-              onClick={() => handleSaveDob(user)}
+              onClick={() => handleUpdateUser(user)}
               color="primary"
               variant="contained"
             >
@@ -113,7 +117,15 @@ const UserItem = ({ user, refetch }: { user: PersonDto; refetch: any }) => {
             </Button>
           )}
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton
+          sx={{
+            flex: 2,
+            justifyContent: "center",
+            "&:hover": {
+              backgroundColor: "transparent", // Remove hover background color
+            },
+          }}
+        >
           {!isAreYouSure ? (
             <Button
               onClick={handleAreYouSure}
