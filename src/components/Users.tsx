@@ -4,21 +4,19 @@ import { PersonDto } from "../api/customers";
 import UserItem from "./UserItem";
 
 const Users = () => {
-  // GET /api/v1/users - Get a list of users
-  // POST /api/v1/users - Create a new user
-
-  const { users, isLoading, isError, refetch } = useUsers("/api/v1/users");
+  const { users, isLoading, isError } = useUsers();
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error</div>;
 
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      {users.map(
-        (user: PersonDto, index: string): JSX.Element => (
-          <UserItem key={index} user={user} refetch={refetch} />
-        )
-      )}
+      {users &&
+        users.map(
+          (user: PersonDto, index: number): JSX.Element => (
+            <UserItem key={index} user={user} />
+          )
+        )}
     </List>
   );
 };
