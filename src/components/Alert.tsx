@@ -4,6 +4,7 @@ import { useState, ReactNode } from "react";
 
 type AlertProps = {
   children: ReactNode;
+  // typically you add some room for custom props
 };
 
 const Alert = ({ children }: AlertProps) => {
@@ -19,7 +20,18 @@ const Alert = ({ children }: AlertProps) => {
         }, 2000);
       }}
     >
-      <MuiAlert severity="error" variant="filled" sx={{ width: "400px" }}>
+      <MuiAlert
+        severity="error"
+        variant="filled"
+        sx={{
+          width: "400px",
+          margin: "0 auto",
+          position: "absolute",
+          left: "50%",
+          transform: "translateY(50%) translateX(-50%)",
+          zIndex: 1,
+        }}
+      >
         {children}
       </MuiAlert>
     </Fade>
