@@ -12,11 +12,14 @@ const Users = () => {
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {users &&
-        users.map(
-          (user: PersonDto, index: number): JSX.Element => (
-            <UserItem key={index} user={user} />
-          )
-        )}
+        users
+          .slice(0)
+          .reverse()
+          .map(
+            (user: PersonDto, index: number): JSX.Element => (
+              <UserItem key={user.firstName + index} user={user} />
+            )
+          )}
     </List>
   );
 };
