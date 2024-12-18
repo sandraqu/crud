@@ -490,7 +490,8 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(users));
   }),
   rest.post("/api/v1/users", async (req, res, ctx) => {
-    const newUser = await req.json();
+    const body = await req.json();
+    const newUser = { ...body };
     newUser.id = users.length + 1;
     users.push(newUser);
     return res(ctx.status(201), ctx.json(newUser));
