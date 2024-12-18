@@ -17,6 +17,7 @@ const UserItem = ({ user }: { user: PersonDto }) => {
   return (
     <>
       {error && <Alert>{error}</Alert>}
+      <Divider variant="inset" component="li" />
       <ListItem>
         <ListItemAvatar>
           <Avatar alt={firstName + " " + lastName} src="#" />
@@ -40,7 +41,6 @@ const UserItem = ({ user }: { user: PersonDto }) => {
           setError={setError}
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
     </>
   );
 };
