@@ -1,6 +1,6 @@
-import { Opaque } from 'type-fest';
+import { Opaque } from "type-fest";
 
-export type PersonId = Opaque<number, 'PersonId'>;
+export type PersonId = Opaque<number, "PersonId">;
 export enum PersonType {
   oaAdmin = 1,
   orgAdmin = 2,
@@ -65,14 +65,14 @@ export interface AddressDto {
   countryId?: number;
 }
 export interface PhoneDto {
-  //   id: number;
-  //   typeId: number;
+  id: number;
+  typeId: number;
   countryCodeId?: number;
   number: string;
 }
 export interface EmailDto {
-  //   id: number;
-  //   typeId: number;
+  id: number;
+  typeId: number;
   email: string;
 }
 export interface EmploymentDto {
