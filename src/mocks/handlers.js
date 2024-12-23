@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-let users = [
+let persons = [
   {
     id: 90000,
     maritalStatusId: 1,
@@ -486,38 +486,38 @@ let users = [
 ];
 
 export const handlers = [
-  rest.get("/api/v1/users", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(users));
+  rest.get("/api/v1/persons", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(persons));
   }),
-  rest.post("/api/v1/users", async (req, res, ctx) => {
+  rest.post("/api/v1/persons", async (req, res, ctx) => {
     const body = await req.json();
-    const newUser = { ...body };
-    newUser.id = users.length + 1;
-    users.push(newUser);
-    return res(ctx.status(201), ctx.json(newUser));
+    const newPerson = { ...body };
+    newPerson.id = persons.length + 1;
+    persons.push(newPerson);
+    return res(ctx.status(201), ctx.json(newPerson));
   }),
-  rest.put("/api/v1/users/:id", async (req, res, ctx) => {
+  rest.put("/api/v1/persons/:id", async (req, res, ctx) => {
     const id = Number.parseInt(req.params.id, 10);
     const body = await req.json();
-    const updatedUser = { ...body };
-    const userIndex = users.findIndex((user) => user.id === id);
+    const updatedPerson = { ...body };
+    const personIndex = persons.findIndex((person) => person.id === id);
 
-    if (userIndex === -1) {
-      console.log("we are having a problem", userIndex);
+    if (personIndex === -1) {
+      // person not found
       return res(ctx.status(404));
     }
-    users[userIndex] = updatedUser;
+    persons[personIndex] = updatedPerson;
 
     return res(ctx.status(204));
   }),
-  rest.delete("/api/v1/users/:id", (req, res, ctx) => {
+  rest.delete("/api/v1/persons/:id", (req, res, ctx) => {
     const id = Number.parseInt(req.params.id, 10);
-    const userIndex = users.findIndex((user) => user.id === id);
+    const personIndex = persons.findIndex((person) => person.id === id);
 
-    if (userIndex === -1) {
+    if (personIndex === -1) {
       return res(ctx.status(404));
     }
-    users = users.filter((user) => user.id !== id);
+    persons = persons.filter((person) => person.id !== id);
 
     return res(ctx.status(204));
   }),

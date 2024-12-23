@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useUpdateUser } from "../../hooks/useUpdateUser";
+import { useUpdatePerson } from "../../hooks/useUpdatePerson";
 import { useQueryClient } from "@tanstack/react-query";
 import { PersonDto } from "../../api/customers";
 
@@ -12,13 +12,13 @@ const phoneRegex = /^\d{10}$/; // Basic 10-digit phone number validation
 
 const Part2 = () => {
   const queryClient = useQueryClient();
-  const cachedNewUser = queryClient.getQueryData(["newUser"]) as PersonDto;
+  const cachedNewPerson = queryClient.getQueryData(["newPerson"]) as PersonDto;
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
 
-  console.log("cachedNewUser", typeof cachedNewUser, cachedNewUser);
-  const { mutate: updateUserMutation, error } = useUpdateUser(
-    cachedNewUser as PersonDto
+  console.log("cachedNewPerson", typeof cachedNewPerson, cachedNewPerson);
+  const { mutate: updatePersonMutation, error } = useUpdatePerson(
+    cachedNewPerson as PersonDto
   );
 
   const isEmailValid = email === "" || email.match(emailRegex) !== null;
@@ -28,23 +28,23 @@ const Part2 = () => {
 
   const navigate = useNavigate();
   const handleSubmit = () => {
-    const userData: PersonDto = {
-      ...cachedNewUser,
+    const personData: PersonDto = {
+      ...cachedNewPerson,
       ...(email && email.match(emailRegex)
         ? {
-            emails: (cachedNewUser.emails || []).concat({
-              id: cachedNewUser.id,
-              typeId: cachedNewUser.typeId,
+            emails: (cachedNewPerson.emails || []).concat({
+              id: cachedNewPerson.id,
+              typeId: cachedNewPerson.typeId,
               email,
             }),
           }
         : {}),
       ...(phone && phone.replace(/-/g, "").match(phoneRegex)
         ? {
-            phones: (cachedNewUser.phones || []).concat([
+            phones: (cachedNewPerson.phones || []).concat([
               {
-                id: cachedNewUser.id,
-                typeId: cachedNewUser.typeId,
+                id: cachedNewPerson.id,
+                typeId: cachedNewPerson.typeId,
                 number: phone,
               },
             ]),
@@ -52,7 +52,7 @@ const Part2 = () => {
         : {}),
     };
 
-    updateUserMutation(userData);
+    updatePersonMutation(personData);
 
     if (!error) {
       navigate("/");
@@ -69,7 +69,7 @@ const Part2 = () => {
         margin: "1rem auto",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>Add User: Part 2 of 2</h1>
+      <h1 style={{ textAlign: "center" }}>Add Person: Part 2 of 2</h1>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <TextField
           id="outlined-basic"

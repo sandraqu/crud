@@ -7,7 +7,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Dayjs } from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { useAddUser } from "../../hooks/useAddUser";
+import { useCreatePerson } from "../../hooks/useCreatePerson";
 
 interface FormValues {
   firstName: string;
@@ -22,7 +22,7 @@ const Part1 = () => {
     dateOfBirth: null,
   });
 
-  const userData = {
+  const personData = {
     typeId: 5,
     firstName: formValues.firstName,
     lastName: formValues.lastName,
@@ -34,34 +34,32 @@ const Part1 = () => {
 
   const {
     error,
-    mutate: addUserMutation,
-    data: createdUser,
-  } = useAddUser(userData);
+    mutate: addPersonMutation,
+    data: createdPerson,
+  } = useCreatePerson(personData);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (!formValues.firstName || !formValues.lastName) {
       // Handle validation error (e.g., display an error message)
-      console.error("First name and last name are required.");
+      console.error("First name and last name are required."); // an Alert situation?
       return;
     }
 
-    addUserMutation(userData);
-
-    // Proceed with form submission
-    console.log("Form submitted");
+    // Continue with form submission
+    addPersonMutation(personData);
   };
 
   const isFormValid = !!formValues.firstName && !!formValues.lastName;
 
   useEffect(() => {
-    if (createdUser) {
+    if (createdPerson) {
       navigate("/form/2");
     }
     if (error) {
-      console.log("uE error", error);
+      console.log("uE error", error); // an Alert situation?
     }
-  }, [createdUser, error]);
+  }, [createdPerson, error]);
 
   return (
     <Box
@@ -73,7 +71,7 @@ const Part1 = () => {
         margin: "1rem auto",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>Add User: Part 1 of 2</h1>
+      <h1 style={{ textAlign: "center" }}>Add Person: Part 1 of 2</h1>
       {/* First Row */}
       <Box sx={{ display: "flex", gap: 2 }}>
         <TextField
@@ -83,7 +81,7 @@ const Part1 = () => {
           sx={{ flex: 1 }}
           value={formValues.firstName}
           onChange={(e) =>
-            setFormValues({ ...formValues, firstName: e.target.value })
+            setFormValues({ ...formValues, firstName: e.target.value.trim() })
           }
           required
         />
@@ -94,7 +92,7 @@ const Part1 = () => {
           sx={{ flex: 1 }}
           value={formValues.lastName}
           onChange={(e) =>
-            setFormValues({ ...formValues, lastName: e.target.value })
+            setFormValues({ ...formValues, lastName: e.target.value.trim() })
           }
           required
         />

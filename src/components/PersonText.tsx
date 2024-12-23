@@ -2,19 +2,19 @@ import Typography from "@mui/material/Typography";
 import ListItemText from "@mui/material/ListItemText";
 import { PersonDto } from "../api/customers";
 
-type UserTextProps = {
-  user: PersonDto;
+type PersonTextProps = {
+  person: PersonDto;
   editedDob: string | undefined;
   isEditingDob: boolean;
   setEditedDob: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
-const UserText = ({
-  user,
+const PersonText = ({
+  person,
   editedDob,
   isEditingDob,
   setEditedDob,
-}: UserTextProps) => {
-  const { firstName, lastName, dob } = user;
+}: PersonTextProps) => {
+  const { firstName, lastName, dob } = person;
 
   return (
     <ListItemText
@@ -63,4 +63,4 @@ const UserText = ({
   );
 };
 
-export default UserText;
+export default PersonText;

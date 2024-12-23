@@ -6,10 +6,10 @@ import Avatar from "@mui/material/Avatar";
 import Alert from "./Alert";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import UserText from "./UserText";
+import PersonText from "./PersonText";
 import { PersonDto } from "../api/customers";
-const UserItem = ({ user }: { user: PersonDto }) => {
-  const { firstName, lastName, dob, id } = user;
+const PersonItem = ({ person }: { person: PersonDto }) => {
+  const { firstName, lastName, dob, id } = person;
   const [isEditingDob, setIsEditingDob] = useState<boolean>(false);
   const [editedDob, setEditedDob] = useState<string | undefined>(dob);
   const [error, setError] = useState<string | null>(null);
@@ -22,21 +22,21 @@ const UserItem = ({ user }: { user: PersonDto }) => {
         <ListItemAvatar>
           <Avatar alt={firstName + " " + lastName} src="#" />
         </ListItemAvatar>
-        <UserText
-          user={user}
+        <PersonText
+          person={person}
           editedDob={editedDob}
           isEditingDob={isEditingDob}
           setEditedDob={setEditedDob}
         />
         <EditButton
-          user={user}
+          person={person}
           editedDob={editedDob}
           isEditingDob={isEditingDob}
           setIsEditingDob={setIsEditingDob}
           setError={setError}
         />
         <DeleteButton
-          userId={id}
+          personId={id}
           setIsEditingDob={setIsEditingDob}
           setError={setError}
         />
@@ -45,4 +45,4 @@ const UserItem = ({ user }: { user: PersonDto }) => {
   );
 };
 
-export default UserItem;
+export default PersonItem;

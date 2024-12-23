@@ -1,30 +1,31 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import ListItemButton from "@mui/material/ListItemButton";
-import { useUpdateUser } from "../hooks/useUpdateUser";
+import { useUpdatePerson } from "../hooks/useUpdatePerson";
 import { PersonDto } from "../api/customers";
 
 type EditButtonProps = {
-  user: PersonDto;
+  person: PersonDto;
   editedDob: string | undefined;
   isEditingDob: boolean;
   setIsEditingDob: (isEditingDob: boolean) => void;
   setError: (error: string | null) => void;
   // typically you add some room for custom props
+  // but in this case, we don't need any
 };
 const EditButton = ({
-  user,
+  person,
   editedDob,
   isEditingDob,
   setIsEditingDob,
   setError,
 }: EditButtonProps) => {
-  const { mutate: updateUserMutation, error: updateError } =
-    useUpdateUser(user);
-  const handleUpdateUser = (user: PersonDto) => {
+  const { mutate: updatePersonMutation, error: updateError } =
+    useUpdatePerson(person);
+  const handleUpdatePerson = (person: PersonDto) => {
     setIsEditingDob(false);
-    user.dob = editedDob;
-    updateUserMutation(user);
+    person.dob = editedDob;
+    updatePersonMutation(person);
   };
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const EditButton = ({
       >
         {isEditingDob ? (
           <Button
-            onClick={() => handleUpdateUser(user)}
+            onClick={() => handleUpdatePerson(person)}
             color="primary"
             variant="contained"
           >

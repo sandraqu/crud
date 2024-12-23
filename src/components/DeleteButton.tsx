@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Alert from "./Alert";
-import useDeleteUser from "../hooks/useDeleteUser";
+import useDeletePerson from "../hooks/useDeletePerson";
 import Button from "@mui/material/Button";
 import ListItemButton from "@mui/material/ListItemButton";
 
 interface DeleteButtonProps {
-  userId: number;
+  personId: number;
   setIsEditingDob: (value: boolean) => void;
   setError: (error: string | null) => void;
   // typically you add some room for custom props
 }
 const DeleteButton = ({
-  userId,
+  personId,
   setIsEditingDob,
   setError,
 }: DeleteButtonProps) => {
-  const { mutate: deleteUserMutation, error: deleteError } =
-    useDeleteUser(userId);
+  const { mutate: deletePersonMutation, error: deleteError } =
+    useDeletePerson(personId);
   const [isAreYouSure, setIsAreYouSure] = useState<boolean>(false);
 
   const handleAreYouSure = () => {
@@ -28,7 +28,7 @@ const DeleteButton = ({
 
     setIsEditingDob(false);
     setIsAreYouSure(false);
-    deleteUserMutation(userId);
+    deletePersonMutation(personId);
   };
 
   useEffect(() => {

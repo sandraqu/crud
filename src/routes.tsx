@@ -2,7 +2,7 @@ import { RouteObject } from "react-router-dom";
 import { HomeView } from "./views/home";
 import FormPart1 from "./views/formPart1";
 import FormPart2 from "./views/formPart2";
-import Users from "./components/Users";
+import PersonList from "./components/PersonList";
 
 export function getAppRoutes(): RouteObject[] {
   return [
@@ -16,7 +16,7 @@ export function getAppRoutes(): RouteObject[] {
       children: [
         {
           index: true,
-          element: <Users />,
+          element: <PersonList />,
         },
       ],
     },
@@ -26,7 +26,7 @@ export function getAppRoutes(): RouteObject[] {
       children: [
         {
           index: true,
-          element: <Users />,
+          element: <PersonList />,
         },
       ],
     },

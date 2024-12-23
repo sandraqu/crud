@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import Users from "../components/Users";
+import PersonList from "../components/PersonList";
 import { useNavigate } from "react-router-dom";
 export function HomeView() {
   const navigate = useNavigate();
@@ -18,10 +18,10 @@ export function HomeView() {
           sx={{ width: "200px" }}
           onClick={() => navigate("/form/1")}
         >
-          Add User
+          Add Person
         </Button>
       </Box>
-      <Users />
+      <PersonList />
     </Box>
   );
 }
